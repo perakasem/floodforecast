@@ -1,2 +1,4 @@
 # newhacks24
-Newhacks 2024
+A Newhacks 2024 Project
+
+Collaborators: Pera Kasemsripitak, Chenhao Sun, Loago Zambe, Jason Panusopone
