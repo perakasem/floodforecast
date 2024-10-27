@@ -229,7 +229,7 @@ export default function FloodRiskCalculator() {
 
     return (
         <div className="min-h-screen bg-gray-50 text-gray-800">
-            <Navbar />
+            <Navbar/>
             <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
                 <div className="flex justify-between items-center mb-12">
                     <h2 className="text-4xl font-bold text-gray-900">
@@ -459,16 +459,16 @@ export default function FloodRiskCalculator() {
                                 <div className="h-64 mb-6">
                                     <ResponsiveContainer width="100%" height="100%">
                                         <RadarChart data={[
-                                            { subject: 'Elevation', value: factors.elevation },
-                                            { subject: 'Distance', value: factors.distance },
-                                            { subject: 'Soil', value: factors.soil },
-                                            { subject: 'History', value: factors.history },
-                                            { subject: 'Rainfall', value: factors.rainfall },
-                                            { subject: 'Vegetation', value: factors.vegetation }
+                                            {subject: 'Elevation', value: factors.elevation},
+                                            {subject: 'Distance', value: factors.distance},
+                                            {subject: 'Soil', value: factors.soil},
+                                            {subject: 'History', value: factors.history},
+                                            {subject: 'Rainfall', value: factors.rainfall},
+                                            {subject: 'Vegetation', value: factors.vegetation}
                                         ]}>
-                                            <PolarGrid />
-                                            <PolarAngleAxis dataKey="subject" />
-                                            <PolarRadiusAxis domain={[0, 3]} />
+                                            <PolarGrid/>
+                                            <PolarAngleAxis dataKey="subject"/>
+                                            <PolarRadiusAxis domain={[0, 3]}/>
                                             <Radar
                                                 dataKey="value"
                                                 stroke="#8884d8"
@@ -483,15 +483,36 @@ export default function FloodRiskCalculator() {
                                 <div className="bg-gray-50 p-6 rounded-md">
                                     <h3 className="font-semibold text-lg mb-2">How to Interpret Your Results</h3>
                                     <p className="text-sm text-gray-700">
-                                        Your calculated risk score reflects the potential vulnerability of your location to flood risks:
+                                        Your calculated risk score reflects the potential vulnerability of your location
+                                        to flood risks:
                                     </p>
                                     <ul className="list-disc ml-5 text-sm mt-2">
-                                        <li><b>Low Risk (0-34%)</b>: Indicates a minimal likelihood of significant flooding. Still, be vigilant during heavy rains. Consider exploring the <a href="https://www.ready.gov/floods" className="text-blue-600 underline" target="_blank">Federal Emergency Management Agency (FEMA) guidelines</a> for flood preparedness.</li>
-                                        <li><b>Medium Risk (35-64%)</b>: Suggests a moderate chance of flooding. Implement protective measures like water barriers, proper drainage, and home floodproofing. Review <a href="https://www.floodsmart.gov/" className="text-blue-600 underline" target="_blank">FloodSmart.gov resources</a> for flood insurance information and safety tips.</li>
-                                        <li><b>High Risk (65% and above)</b>: A strong possibility of flooding exists. Engage in active risk mitigation, including creating a flood action plan, elevating utilities, and considering evacuation routes. Visit the <a href="https://www.nhc.noaa.gov/" className="text-blue-600 underline" target="_blank">National Hurricane Center</a> for up-to-date weather information.</li>
+                                        <li><b>Low Risk (0-34%)</b>: Indicates a minimal likelihood of significant
+                                            flooding. Still, be vigilant during heavy rains. Consider exploring the <a
+                                                href="https://www.ready.gov/floods" className="text-blue-600 underline"
+                                                target="_blank">Federal Emergency Management Agency (FEMA)
+                                                guidelines</a> for flood preparedness.
+                                        </li>
+                                        <li><b>Medium Risk (35-64%)</b>: Suggests a moderate chance of flooding.
+                                            Implement protective measures like water barriers, proper drainage, and home
+                                            floodproofing. Review <a href="https://www.floodsmart.gov/"
+                                                                     className="text-blue-600 underline"
+                                                                     target="_blank">FloodSmart.gov resources</a> for
+                                            flood insurance information and safety tips.
+                                        </li>
+                                        <li><b>High Risk (65% and above)</b>: A strong possibility of flooding exists.
+                                            Engage in active risk mitigation, including creating a flood action plan,
+                                            elevating utilities, and considering evacuation routes. Visit the <a
+                                                href="https://www.nhc.noaa.gov/" className="text-blue-600 underline"
+                                                target="_blank">National Hurricane Center</a> for up-to-date weather
+                                            information.
+                                        </li>
                                     </ul>
                                     <p className="text-sm text-red-600 mt-4">
-                                        <strong>Disclaimer:</strong> This simulation is an approximation and cannot determine the actual percentage of flood risk. It is designed to calculate the level of risk of exposure to flood based on known geographical and topological features.
+                                        <strong>Disclaimer:</strong> This simulation is an approximation and cannot
+                                        determine the actual percentage of flood risk. It is designed to calculate the
+                                        level of risk of exposure to flood based on known geographical and topological
+                                        features.
                                     </p>
                                 </div>
                             </>
@@ -503,6 +524,11 @@ export default function FloodRiskCalculator() {
                     </div>
                 </div>
             </div>
+            <footer className="bg-gray-800 py-8">
+                <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center text-gray-400">
+                    <p>© 2024 FloodForecast. All rights reserved.</p>
+                </div>
+            </footer>
         </div>
     );
 }

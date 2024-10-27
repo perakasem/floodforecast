@@ -1,4 +1,3 @@
-// src/components/VegetationSimulation.tsx
 import { useState, useEffect } from 'react';
 import {
     BarChart,
