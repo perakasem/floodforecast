@@ -6,7 +6,7 @@ import LandingPage from './components/LandingPage'; // Import the LandingPage
 function App() {
     return (
         <Router>
-            <div className="min-h-screen bg-gray-100">
+            <div className="min-h-screen bg-gray-100 no-scrollbar">
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/flood-risk-calculator" element={<FloodRiskCalculator />} />
@@ -18,3 +18,5 @@ function App() {
 }
 
 export default App;
+
+
