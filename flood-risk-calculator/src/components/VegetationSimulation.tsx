@@ -10,11 +10,6 @@ import {
 } from 'recharts';
 import Navbar from './Navbar';
 
-// Updated academic references:
-// - "What Is the Contribution of Urban Trees to Mitigate Pluvial Flooding?" (MDPI, 2022) - 50% Weighting for Trees
-// - "The Role of Woodland in Flood Control" (Forestry Research, UK) - 30% Weighting for Shrubs
-// - "Selection, Planning, and Modelling of Nature-Based Solutions for Flood Mitigation" (MDPI, 2024) - 20% Weighting for Grass
-
 interface VegetationData {
     treeCoverage: number;
     shrubCoverage: number;
@@ -68,117 +63,123 @@ export default function VegetationSimulation() {
     // Calculate impact initially and when slider values change
     useEffect(() => {
         calculateImpact();
-    }, [vegetationData]); // Depend on vegetationData to trigger recalculation
+    }, [vegetationData]);
 
     return (
-        <div className="max-w-6xl mx-auto p-6">
-            <Navbar /> {/* Add Navbar at the top */}
+        <div className="min-h-screen bg-gray-50 text-gray-800">
+            <Navbar/>
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+                <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
+                    Vegetation Impact Simulation
+                </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Simulation Section */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                    <h2 className="text-2xl font-bold mb-6">Vegetation Impact Simulation</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    {/* Simulation Section */}
+                    <div className="bg-white rounded-lg shadow-lg p-8">
+                        <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+                            Adjust Vegetation Levels
+                        </h3>
 
-                    <div className="space-y-6">
-                        <div>
-                            <label className="block text-sm font-medium mb-1">
-                                Tree Coverage (%)
-                            </label>
-                            <input
-                                type="range"
-                                name="treeCoverage"
-                                className="w-full"
-                                min="0"
-                                max="100"
-                                step="1"
-                                value={vegetationData.treeCoverage}
-                                onChange={(e) => handleSliderChange('treeCoverage', Number(e.target.value))}
-                            />
-                            <div className="text-sm text-gray-500">Coverage: {vegetationData.treeCoverage}%</div>
-                        </div>
+                        <div className="space-y-8">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Tree Coverage (%)
+                                </label>
+                                <input
+                                    type="range"
+                                    name="treeCoverage"
+                                    className="w-full"
+                                    min="0"
+                                    max="100"
+                                    step="1"
+                                    value={vegetationData.treeCoverage}
+                                    onChange={(e) => handleSliderChange('treeCoverage', Number(e.target.value))}
+                                />
+                                <div className="text-sm text-gray-600">Coverage: {vegetationData.treeCoverage}%</div>
+                            </div>
 
-                        <div>
-                            <label className="block text-sm font-medium mb-1">
-                                Shrub Coverage (%)
-                            </label>
-                            <input
-                                type="range"
-                                name="shrubCoverage"
-                                className="w-full"
-                                min="0"
-                                max="100"
-                                step="1"
-                                value={vegetationData.shrubCoverage}
-                                onChange={(e) => handleSliderChange('shrubCoverage', Number(e.target.value))}
-                            />
-                            <div className="text-sm text-gray-500">Coverage: {vegetationData.shrubCoverage}%</div>
-                        </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Shrub Coverage (%)
+                                </label>
+                                <input
+                                    type="range"
+                                    name="shrubCoverage"
+                                    className="w-full"
+                                    min="0"
+                                    max="100"
+                                    step="1"
+                                    value={vegetationData.shrubCoverage}
+                                    onChange={(e) => handleSliderChange('shrubCoverage', Number(e.target.value))}
+                                />
+                                <div className="text-sm text-gray-600">Coverage: {vegetationData.shrubCoverage}%</div>
+                            </div>
 
-                        <div>
-                            <label className="block text-sm font-medium mb-1">
-                                Grass Coverage (%)
-                            </label>
-                            <input
-                                type="range"
-                                name="grassCoverage"
-                                className="w-full"
-                                min="0"
-                                max="100"
-                                step="1"
-                                value={vegetationData.grassCoverage}
-                                onChange={(e) => handleSliderChange('grassCoverage', Number(e.target.value))}
-                            />
-                            <div className="text-sm text-gray-500">Coverage: {vegetationData.grassCoverage}%</div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Grass Coverage (%)
+                                </label>
+                                <input
+                                    type="range"
+                                    name="grassCoverage"
+                                    className="w-full"
+                                    min="0"
+                                    max="100"
+                                    step="1"
+                                    value={vegetationData.grassCoverage}
+                                    onChange={(e) => handleSliderChange('grassCoverage', Number(e.target.value))}
+                                />
+                                <div className="text-sm text-gray-600">Coverage: {vegetationData.grassCoverage}%</div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Results Section */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                    <h2 className="text-xl font-bold mb-6">Simulation Results</h2>
+                    {/* Results Section */}
+                    <div className="bg-white rounded-lg shadow-lg p-8">
+                        <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+                            Simulation Results
+                        </h3>
 
-                    {impactDetails ? (
-                        <>
-                            <div
-                                className={`mb-6 p-4 rounded text-center font-bold ${
-                                    impactDetails.totalImpact >= 75 ? 'bg-green-100 text-green-700' :
-                                        impactDetails.totalImpact >= 45 ? 'bg-yellow-100 text-yellow-700' :
-                                            'bg-red-100 text-red-700'
-                                }`}
-                            >
-                                <div className="text-lg">Flood Impact Reduction: {impactDetails.totalImpact.toFixed(1)}%</div>
-                            </div>
+                        {impactDetails ? (
+                            <>
+                                <div
+                                    className={`mb-6 p-4 rounded text-center font-bold ${
+                                        impactDetails.totalImpact >= 75 ? 'bg-green-100 text-green-700' :
+                                            impactDetails.totalImpact >= 45 ? 'bg-yellow-100 text-yellow-700' :
+                                                'bg-red-100 text-red-700'
+                                    }`}
+                                >
+                                    <div className="text-lg">Flood Impact
+                                        Reduction: {impactDetails.totalImpact.toFixed(1)}%
+                                    </div>
+                                </div>
 
-                            <div className="h-32 mb-6">
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <BarChart
-                                        layout="vertical"
-                                        data={impactDetails.chartData}
-                                        barCategoryGap={10}
-                                    >
-                                        <XAxis type="number" domain={[0, 100]} ticks={[0, 50, 100]} />
-                                        <YAxis type="category" dataKey="name" hide />
-                                        <Tooltip />
-                                        <Bar dataKey="RemainingRisk" stackId="a" fill="#e57373" />
-                                        <Bar dataKey="Grass" stackId="a" fill="#9ccc65" />
-                                        <Bar dataKey="Shrubs" stackId="a" fill="#66bb6a" />
-                                        <Bar dataKey="Trees" stackId="a" fill="#2e7d32" />
-                                    </BarChart>
-                                </ResponsiveContainer>
-                            </div>
+                                <div className="h-32 mb-6">
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <BarChart
+                                            layout="vertical"
+                                            data={impactDetails.chartData}
+                                            barCategoryGap={10}
+                                        >
+                                            <XAxis type="number" domain={[0, 100]} ticks={[0, 50, 100]}/>
+                                            <YAxis type="category" dataKey="name" hide/>
+                                            <Tooltip/>
+                                            <Bar dataKey="RemainingRisk" stackId="a" fill="#e57373"/>
+                                            <Bar dataKey="Grass" stackId="a" fill="#9ccc65"/>
+                                            <Bar dataKey="Shrubs" stackId="a" fill="#66bb6a"/>
+                                            <Bar dataKey="Trees" stackId="a" fill="#2e7d32"/>
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </div>
 
-                            {/* Interpretation Section */}
-                            <div className="bg-gray-50 p-4 rounded-md">
-                                <p className="text-sm text-gray-700 mt-2">
-                                    Use the sliders to explore how varying vegetation levels can mitigate flood risks.
-                                </p>
-                                <div className="bg-gray-50 p-4 rounded-md">
+                                {/* Interpretation Section */}
+                                <div className="bg-gray-50 p-6 rounded-md">
                                     <h3 className="font-semibold text-lg mb-2">How to Interpret Your Results</h3>
                                     <p className="text-sm text-gray-700">
                                         This simulation uses different weights to evaluate how vegetation
                                         influences flood risk:
                                     </p>
-                                    <ul className="list-disc ml-5 text-sm mt-2">
+                                    <ul className="list-disc ml-5 text-sm mt-4">
                                         <li>
                                             <b>Tree Coverage (50% Impact)</b>: Trees are highly effective due to their
                                             deep roots and water absorption capabilities.
@@ -192,7 +193,7 @@ export default function VegetationSimulation() {
                                             has less impact than trees or shrubs.
                                         </li>
                                     </ul>
-                                    <p className="text-sm text-gray-700 mt-2">
+                                    <p className="text-sm text-gray-700 mt-4">
                                         Use the sliders to explore how varying vegetation levels can mitigate flood
                                         risks based on reliable academic research.
                                     </p>
@@ -203,15 +204,20 @@ export default function VegetationSimulation() {
                                         through vegetation, not a complete elimination of all flood damage risks.
                                     </p>
                                 </div>
+                            </>
+                        ) : (
+                            <div className="text-center text-gray-500">
+                                Adjust the sliders to see updated impact results
                             </div>
-                        </>
-                    ) : (
-                        <div className="text-center text-gray-500">
-                            Adjust the sliders to see updated impact results
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
+            <footer className="bg-gray-800 py-8">
+                <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center text-gray-400">
+                    <p>© 2024 FloodForecast. All rights reserved.</p>
+                </div>
+            </footer>
         </div>
     );
 }
