@@ -1,6 +1,7 @@
 // src/components/LandingPage.tsx
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Navbar from './Navbar';
 
 export default function LandingPage() {
     return (
@@ -10,10 +11,9 @@ export default function LandingPage() {
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="min-h-screen bg-gray-50 text-gray-800"
         >
-            {/* Hero Section */}
-            <section className="bg-white min-h-[60vh] py-20 flex items-center justify-center shadow-sm"> {/* Adjusted to min-h-[60vh] and py-20 */}
+            <Navbar/>
+            <section className="bg-white min-h-[80vh] py-20 flex items-center justify-center shadow-sm">
                 <div className="max-w-4xl mx-auto px-6 lg:px-8 flex flex-col items-center text-center">
-                    {/* Centered Tagline and CTA */}
                     <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900">
                         Elevate <span className="text-indigo-600">Flood Risk Analysis</span> with Vegetation Insights
                     </h1>
