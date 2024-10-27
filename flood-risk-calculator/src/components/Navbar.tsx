@@ -5,7 +5,7 @@ export default function Navbar() {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <div className="bg-white/90 backdrop-blur-md text-gray-800 py-4 px-6 mb-6 shadow-md rounded-lg">
+        <div className="bg-white/90 backdrop-blur-md text-gray-800 py-4 px-6 shadow-md rounded-lg">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <h1 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-blue-500">
                     <a href={"/"}>FloodForecast</a>
